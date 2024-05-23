@@ -1,0 +1,8 @@
+aws-cdk-lib==2.142.1
+constructs>=10.0.0,<11.0.0
+streamlit
+pandas
+numpy
+matplotlib
+boto3
+botocore
