@@ -6,5 +6,8 @@ boto3
 botocore
 streamlit-feedback
 LangChain
-faiss-gpu
+faiss-cpu
+tqdm
 altair==4.0
+langchain-community 
+langchain-core
