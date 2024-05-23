@@ -1,5 +1,3 @@
-%%writefile ../src_ticketClassification_app/examples.py
-
 import pandas as pd
 import numpy as np
 import re
