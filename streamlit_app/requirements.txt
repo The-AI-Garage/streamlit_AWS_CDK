@@ -1,0 +1,10 @@
+streamlit
+pandas
+numpy
+matplotlib
+boto3
+botocore
+streamlit-feedback
+LangChain
+faiss-gpu
+altair==4.0
