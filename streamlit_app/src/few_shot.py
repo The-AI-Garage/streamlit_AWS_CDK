@@ -181,9 +181,10 @@ examples = [
 ]
 
 class build_prompt(object):
-    def __init__(self, text):
+    def __init__(self, text, bedrock_client):
         self.input_text= text
         self.examples = examples
+        self.bedrock= bedrock_client
         
     def generate_prompt(self):
         example_prompt = PromptTemplate(
@@ -195,7 +196,7 @@ class build_prompt(object):
             # The list of examples available to select from.
             self.examples,
             # The embedding class used to produce embeddings which are used to measure semantic similarity.
-            BedrockEmbeddings(model_id= 'amazon.titan-embed-text-v1'),
+            BedrockEmbeddings(client= self.bedrock, region_name= 'us-east-1', model_id= 'amazon.titan-embed-text-v1'),
             # The VectorStore class that is used to store the embeddings and do a similarity search over.
             FAISS,
             # The number of examples to produce.
