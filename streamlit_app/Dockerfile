@@ -4,9 +4,10 @@ EXPOSE 8501
 WORKDIR /streamlit_app
 COPY requirements.txt ./requirements.txt 
 COPY src ./src
-COPY ~/.aws/credentials ~/.aws/credentials
+COPY credentials ./credentials
 RUN pip3 install -r requirements.txt
 COPY . .
+CMD mv ./credentials ~/.aws/
 CMD streamlit run src/app.py \
     --server.headless true \
     --browser.serverAddress="0.0.0.0" \

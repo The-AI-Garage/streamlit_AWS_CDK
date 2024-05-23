@@ -11,3 +11,5 @@ cdk.out
 
 #virtual environment
 venv/
+# credenciales
+credentials
