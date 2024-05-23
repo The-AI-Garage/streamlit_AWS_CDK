@@ -4,14 +4,14 @@ from aws_cdk import (
     aws_ecr as ecr,
     aws_iam as iam,
     aws_ecs_patterns as ecs_patterns,
-    core,
+    Stack
 )
+from constructs import Construct
 
+class CdkStack(Stack):
 
-class CdkStack(core.Stack):
-
-    def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
-        super().__init__(scope, id, **kwargs)
+    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
+        super().__init__(scope, construct_id, **kwargs)
 
         # Create a VPC
         vpc = ec2.Vpc(
