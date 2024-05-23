@@ -16,7 +16,7 @@ from few_shot import build_prompt
 st.title('IT ticket classifier')
 
 def generate_response(input_text, mmr_prompt):
-    bedrock = boto3.client(service_name='bedrock-runtime')
+    bedrock = boto3.client(credentials_profile_name='~/.aws/credentials', region_name= 'us-east-1', service_name='bedrock-runtime')
     prompt = mmr_prompt.generate_prompt()
     llm = BedrockChat(client=bedrock, model_id="anthropic.claude-3-sonnet-20240229-v1:0")
     llm_chain = LLMChain(prompt=prompt, llm=llm)
