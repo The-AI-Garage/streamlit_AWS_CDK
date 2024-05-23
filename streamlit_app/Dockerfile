@@ -4,6 +4,7 @@ EXPOSE 8501
 WORKDIR /streamlit_app
 COPY requirements.txt ./requirements.txt 
 COPY src ./src
+COPY ~/.aws/credentials ~/.aws/credentials
 RUN pip3 install -r requirements.txt
 COPY . .
 CMD streamlit run src/app.py \
