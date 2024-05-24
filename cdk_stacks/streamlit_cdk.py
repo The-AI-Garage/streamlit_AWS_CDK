@@ -4,7 +4,8 @@ from aws_cdk import (
     aws_ecr as ecr,
     aws_iam as iam,
     aws_ecs_patterns as ecs_patterns,
-    Stack
+    Stack,
+    Duration
 )
 from constructs import Construct
 
@@ -65,6 +66,6 @@ class CdkStack(Stack):
         scaling.scale_on_cpu_utilization(
             "CpuScaling",
             target_utilization_percent=80,
-            scale_in_cooldown=core.Duration.seconds(60),
-            scale_out_cooldown=core.Duration.seconds(60),
+            scale_in_cooldown=Duration.seconds(60),
+            scale_out_cooldown=Duration.seconds(60),
         )
