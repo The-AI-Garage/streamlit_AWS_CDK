@@ -5,7 +5,8 @@ from aws_cdk import (
     aws_iam as iam,
     aws_ecs_patterns as ecs_patterns,
     Stack,
-    Duration
+    Duration,
+    aws_ecr_assets
 )
 from constructs import Construct
 
@@ -28,15 +29,17 @@ class CdkStack(Stack):
         cluster.add_capacity("AsgSpot",
             max_capacity=2,
             min_capacity=1,
-            desired_capacity=1,
-            instance_type=ec2.InstanceType("t2.medium"),
+            desired_capacity=2,
+            instance_type=ec2.InstanceType("c5.xlarge"),
             spot_price="0.0735",
             # Enable the Automated Spot Draining support for Amazon ECS
             spot_instance_draining=True
         )
 
         # Build Dockerfile from local folder and push to ECR
-        image = ecs.ContainerImage.from_asset('streamlit_app')
+        image = ecs.ContainerImage.from_asset(
+            'streamlit_app',
+            platform= aws_ecr_assets.Platform.LINUX_AMD64)
 
         # Create Fargate service
         fargate_service = ecs_patterns.ApplicationLoadBalancedFargateService(
@@ -48,7 +51,7 @@ class CdkStack(Stack):
                 image=image, 
                 container_port=8501,
                 ),
-            memory_limit_mib=2048,      # Default is 512
+            memory_limit_mib=4096,      # Default is 512
             public_load_balancer=True)  # Default is True
 
         # Add policies to task role
