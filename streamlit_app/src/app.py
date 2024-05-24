@@ -12,8 +12,16 @@ from langchain.chains import LLMChain
 from langchain_community.embeddings import BedrockEmbeddings
 from few_shot import build_prompt
 
-
-st.title('IT ticket classifier')
+st.set_page_config(
+    page_title="IT ticket classifier",
+    page_icon="🤖",
+    )
+st.title('IT ticket classifier 🤖')
+st.markdown(
+    """
+    Aqui vas a poder obtener un resultado del clasificador de tickets de IT 
+    """
+)
 
 def generate_response(input_text, mmr_prompt, bedrock_client):
     prompt = mmr_prompt.generate_prompt()
@@ -22,6 +30,8 @@ def generate_response(input_text, mmr_prompt, bedrock_client):
     st.info(llm_chain.invoke(input_text))
 
 def main():
+    
+    st.sidebar.success("Select a function.")
     bedrock = boto3.client(region_name= 'us-east-1', service_name='bedrock-runtime')
     with st.form('my_form'):
         text = st.text_area('Enter text:', ' ')

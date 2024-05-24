@@ -1,12 +1,5 @@
-import pandas as pd
-import numpy as np
-import re
-from tqdm.auto import tqdm
-import boto3
+import streamlit as st
 
-from langchain_community.chat_models import BedrockChat
-from langchain.llms import Bedrock
-from langchain.chains import LLMChain
 from langchain_community.embeddings import BedrockEmbeddings
 
 from langchain_community.vectorstores import FAISS
@@ -95,7 +88,7 @@ examples = [
     },
     {
     "Text": "access request account hello everyone colleague had her working yesterday since she hand over requesting her please map file other solution thank kind regards infrastructure",
-    "Outpu": "Hardware",
+    "Output": "Hardware",
     },
     {
     "Text": "check if com is still available wednesday pm undeliverable expire days has failed these groups entered found please recipient problem continues please diagnostic information administrators generating remote returned resolver found id wed return path by id wed wed rf axe nj msg ref tower originating version banners checked tower id wed id wed id via transport wed mime version priority priority urgent importance high date wed expire days id unique impersonation protect similar false newly observed false user name false mismatch false targeted threat dictionary false authentication results pass designates permitted client envelope content type text content transfer encoding base",
@@ -191,7 +184,7 @@ class build_prompt(object):
             input_variables=["Text", "Output"],
             template="Text: {Text}\nOutput: {Output}",
         )
-    
+        # select the most similar example to the input
         example_selector = MaxMarginalRelevanceExampleSelector.from_examples(
             # The list of examples available to select from.
             self.examples,
