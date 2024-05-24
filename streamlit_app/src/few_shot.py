@@ -196,7 +196,7 @@ class build_prompt(object):
             # The list of examples available to select from.
             self.examples,
             # The embedding class used to produce embeddings which are used to measure semantic similarity.
-            BedrockEmbeddings(credentials_profile_name='013987100154_SuperAdminAccess', client= self.bedrock, region_name= 'us-east-1', model_id= 'amazon.titan-embed-text-v1'),
+            BedrockEmbeddings(client= self.bedrock, region_name= 'us-east-1', model_id= 'amazon.titan-embed-text-v1'),
             # The VectorStore class that is used to store the embeddings and do a similarity search over.
             FAISS,
             # The number of examples to produce.

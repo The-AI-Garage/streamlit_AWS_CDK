@@ -17,7 +17,7 @@ st.title('IT ticket classifier')
 
 def generate_response(input_text, mmr_prompt, bedrock_client):
     prompt = mmr_prompt.generate_prompt()
-    llm = BedrockChat(credentials_profile_name='013987100154_SuperAdminAccess' ,client=bedrock_client,region_name= 'us-east-1', model_id="anthropic.claude-3-sonnet-20240229-v1:0")
+    llm = BedrockChat(client=bedrock_client,region_name= 'us-east-1', model_id="anthropic.claude-3-sonnet-20240229-v1:0")
     llm_chain = LLMChain(prompt=prompt, llm=llm)
     st.info(llm_chain.invoke(input_text))
 
